@@ -11,6 +11,8 @@ routes.get('/', (req, res) => {
 })
 
 routes.post('/', ClientData.save)
+routes.get('/data', ClientData.getDatas)
+routes.get('/limite/:ini/:li', ClientData.getLim)
 
 
 module.exports = routes

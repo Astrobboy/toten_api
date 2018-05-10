@@ -17,7 +17,11 @@ const DataSchema = Schema({
     'variedade': String,
     'pacote': String, 
     'precio': String,
-	'image': String
+    'image': String,
+    'fecha': String,
+    'hora': String,
+    'mes': String,
+    'anho': String
 
 })
 

@@ -3,7 +3,6 @@
 const client_data_schema = require('../models/data')
 
 save = (req, res) => {
-    console.log('entre')
     var data = req.body
     //guardar en db
     let data_client = new client_data_schema()
@@ -19,7 +18,12 @@ save = (req, res) => {
     data_client.variedade = req.body.variedade,
     data_client.pacote = req.body.pacote,
     data_client.precio = req.body.precio,
-    data_client.image = req.body.image
+    data_client.image = req.body.image,
+    data_client.fecha = req.body.fecha,
+    data_client.hora = req.body.hora,
+    data_client.mes = req.body.mes,
+    data_client.anho = req.body.anho,
+
 
     //carga en db
 	data_client.save((err, dataStore) => {
@@ -30,8 +34,47 @@ save = (req, res) => {
 
 }
 
+getDatas = (req, res) => {
+    client_data_schema.find({}, (err, datos) => {
+		if(err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`})
+        if (!datos) return res.status(404).send({ message: `El dato no existe`})
+
+        res.send(200, { datos })
+	})
+
+}
+
+
+getLim = (req, res) => {
+    let limite = Number(req.params.li)
+    let inicio = Number(req.params.ini)
+    
+    client_data_schema.find({}, (err, datos) => {
+		if(err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`})
+        if (!datos) return res.status(404).send({ message: `El dato no existe`})
+        console.log(datos.length);
+        let newData = { 'datos': []}
+        if (incio >= datos.length){
+            res.send(200, { datos })
+        }else{
+          for (let i=inicio;i< datos.length; i++) {
+            if (datos[i]){
+              newData.datos.push(datos[i])
+            }
+          }
+        }
+        res.send(200, { newData })
+	}).limit(limite)
+
+}
+
+
+
+
 module.exports = {
-    save
+    save,
+    getDatas,
+    getLim
 }
 
 //funciones, y llama a productos(modelo)
