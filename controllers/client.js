@@ -78,3 +78,9 @@ module.exports = {
 }
 
 //funciones, y llama a productos(modelo)
+
+/*
+sudo vim /etc/nginx/sites-available/default
+$ sudo systemctl restart nginx
+sudo nginx -t
+*/
