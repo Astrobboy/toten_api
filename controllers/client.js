@@ -4,6 +4,7 @@ const client_data_schema = require('../models/data')
 
 save = (req, res) => {
     var data = req.body
+    console.log(data)
     //guardar en db
     let data_client = new client_data_schema()
     data_client.nome  = req.body.nome,
