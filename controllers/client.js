@@ -45,6 +45,37 @@ getDatas = (req, res) => {
 
 }
 
+getDataClient = (req, res) => {
+    client_data_schema.find({}, (err, datos) => {
+		if(err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`})
+        if (!datos) return res.status(404).send({ message: `El dato no existe`})
+        //console.log(datos)
+        let dat = { datos : []}
+        for(let i = 0 ;i < datos.length;i++){
+            dat.datos.push({
+                            'id': datos[i]._id,
+                            'nome': datos[i].nome,
+                            'comentario': datos[i].comentario,
+                            'telefone': datos[i].telefone,
+                            'gmail': datos[i].gmail,
+                            'probabilidad': datos[i].probabilidad,
+                            'conocio': datos[i].conocio,
+                            'res_procurava': datos[i].res_procurava,
+                            'atendimiento': datos[i].atendimiento,
+                            'qualidade': datos[i].qualidade,
+                            'variedade': datos[i].variedade,
+                            'pacote': datos[i].pacote,
+                            'precio': datos[i].precio,
+                            'image': '',
+                            'fecha': datos[i].fecha
+                        });
+        }
+        res.send(200, dat )
+	})
+
+}
+
+
 getDataAtendimiento = (req, res) => {
     client_data_schema.find({}, (err, datos) => {
 		if(err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`})
@@ -62,7 +93,7 @@ getDataQualidade = (req, res) => {
     client_data_schema.find({}, (err, datos) => {
 		if(err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`})
         if (!datos) return res.status(404).send({ message: `El dato no existe`})
-        var dat = []
+        let dat = []
         for(let i = 0 ;i < datos.length;i++){
             dat.push(datos[i].qualidade);
         }
@@ -75,7 +106,7 @@ getDataVariedade = (req, res) => {
     client_data_schema.find({}, (err, datos) => {
 		if(err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`})
         if (!datos) return res.status(404).send({ message: `El dato no existe`})
-        var dat = []
+        let dat = []
         for(let i = 0 ;i < datos.length;i++){
             dat.push(datos[i].variedade);
         }
@@ -88,7 +119,7 @@ getDataPacote = (req, res) => {
     client_data_schema.find({}, (err, datos) => {
 		if(err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`})
         if (!datos) return res.status(404).send({ message: `El dato no existe`})
-        var dat = []
+        let dat = []
         for(let i = 0 ;i < datos.length;i++){
             dat.push(datos[i].pacote);
         }
@@ -101,7 +132,7 @@ getDataPrecio = (req, res) => {
     client_data_schema.find({}, (err, datos) => {
 		if(err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`})
         if (!datos) return res.status(404).send({ message: `El dato no existe`})
-        var dat = []
+        let dat = []
         for(let i = 0 ;i < datos.length;i++){
             dat.push(datos[i].precio);
         }
@@ -145,7 +176,8 @@ module.exports = {
     getDataQualidade,
     getDataVariedade,
     getDataPacote,
-    getDataPrecio
+    getDataPrecio,
+    getDataClient
 }
 
 //funciones, y llama a productos(modelo)

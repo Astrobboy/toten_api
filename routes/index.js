@@ -18,6 +18,7 @@ routes.get('/qualidade', ClientData.getDataVariedade)
 routes.get('/variedade', ClientData.getDataQualidade)
 routes.get('/pacote', ClientData.getDataPacote)
 routes.get('/precio', ClientData.getDataPrecio)
+routes.get('/dataclient', ClientData.getDataClient)
 
 
 
