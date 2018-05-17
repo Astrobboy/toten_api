@@ -151,7 +151,7 @@ getLim = (req, res) => {
         if (!datos) return res.status(404).send({ message: `El dato no existe`})
         console.log(datos.length);
         let newData = { 'datos': []}
-        if (incio >= datos.length){
+        if (inicio >= datos.length){
             res.send(200, { datos })
         }else{
           for (let i=inicio;i< datos.length; i++) {
