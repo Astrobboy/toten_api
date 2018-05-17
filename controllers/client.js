@@ -45,6 +45,71 @@ getDatas = (req, res) => {
 
 }
 
+getDataAtendimiento = (req, res) => {
+    client_data_schema.find({}, (err, datos) => {
+		if(err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`})
+        if (!datos) return res.status(404).send({ message: `El dato no existe`})
+        var dat = []
+        for(let i = 0 ;i < datos.length;i++){
+            dat.push(datos[i].atendimiento);
+        }
+        res.send(200, dat)
+	})
+
+}
+
+getDataQualidade = (req, res) => {
+    client_data_schema.find({}, (err, datos) => {
+		if(err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`})
+        if (!datos) return res.status(404).send({ message: `El dato no existe`})
+        var dat = []
+        for(let i = 0 ;i < datos.length;i++){
+            dat.push(datos[i].qualidade);
+        }
+        res.send(200, dat)
+	})
+
+}
+
+getDataVariedade = (req, res) => {
+    client_data_schema.find({}, (err, datos) => {
+		if(err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`})
+        if (!datos) return res.status(404).send({ message: `El dato no existe`})
+        var dat = []
+        for(let i = 0 ;i < datos.length;i++){
+            dat.push(datos[i].variedade);
+        }
+        res.send(200, dat)
+	})
+
+}
+
+getDataPacote = (req, res) => {
+    client_data_schema.find({}, (err, datos) => {
+		if(err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`})
+        if (!datos) return res.status(404).send({ message: `El dato no existe`})
+        var dat = []
+        for(let i = 0 ;i < datos.length;i++){
+            dat.push(datos[i].pacote);
+        }
+        res.send(200, dat)
+	})
+
+}
+
+getDataPrecio = (req, res) => {
+    client_data_schema.find({}, (err, datos) => {
+		if(err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`})
+        if (!datos) return res.status(404).send({ message: `El dato no existe`})
+        var dat = []
+        for(let i = 0 ;i < datos.length;i++){
+            dat.push(datos[i].precio);
+        }
+        res.send(200, dat)
+	})
+
+}
+
 
 getLim = (req, res) => {
     let limite = Number(req.params.li)
@@ -75,7 +140,12 @@ getLim = (req, res) => {
 module.exports = {
     save,
     getDatas,
-    getLim
+    getLim,
+    getDataAtendimiento,
+    getDataQualidade,
+    getDataVariedade,
+    getDataPacote,
+    getDataPrecio
 }
 
 //funciones, y llama a productos(modelo)
