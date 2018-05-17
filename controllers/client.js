@@ -149,7 +149,6 @@ getLim = (req, res) => {
     client_data_schema.find({}, (err, datos) => {
 		if(err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`})
         if (!datos) return res.status(404).send({ message: `El dato no existe`})
-        console.log(datos.length);
         let newData = { 'datos': []}
         if (inicio >= datos.length){
             res.send(200, { datos })
@@ -160,7 +159,7 @@ getLim = (req, res) => {
             }
           }
         }
-        res.send(200, { newData })
+        res.send(200,  newData)
 	}).limit(limite)
 
 }
